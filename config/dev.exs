@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :financialApp, FinancialApp.Repo,
   username: "postgres",
-  password: "admin",
+  password: "Santos813",
   database: "financialapp_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,

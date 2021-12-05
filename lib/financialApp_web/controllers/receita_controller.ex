@@ -22,13 +22,16 @@ defmodule FinancialAppWeb.ReceitaController do
   end
 
   def create(conn, %{"id" => id, "receita" => receita}) do
-    changeset = Receita.changeset(%Receita{user_id: id}, receita)
-    {:ok, ^receita} = Repo.insert(changeset)
-
-    conn
-    |> put_flash(:info, "Receita criada com sucesso!")
-    |> redirect(to: Routes.receita_path(conn, :show, id))
-
+    inteiro = String.to_integer(id)
+    changeset = Receita.changeset(%Receita{user_id: inteiro}, receita)
+    case Repo.insert(changeset) do
+      {:ok, ^receita} ->
+        conn
+        |> put_flash(:info, "Receita criada com sucesso!")
+        |> redirect(to: Routes.receita_path(conn, :show, id))
+      {":error", changeset} ->
+        render(conn, "html", changeset: changeset, user_id: id)
+    end
   end
 
   def edit(conn, %{"id" => id}) do

@@ -2,12 +2,10 @@ defmodule FinancialApp.Receita do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias FinancialApp.Accounts.User
-
   schema "receitas" do
     field :name, :string
     field :valor, :float
-    belongs_to(:user, User)
+    field :user_id, :integer
 
 
     timestamps()

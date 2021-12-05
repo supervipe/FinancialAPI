@@ -24,16 +24,13 @@ defmodule FinancialAppWeb.DespesaController do
   end
 
   def create(conn, %{"id" => id, "despesa" => despesa}) do
-    changeset = Despesa.changeset(%Despesa{user_id: id}, despesa)
+    inteiro = String.to_integer(id)
+    changeset = Despesa.changeset(%Despesa{user_id: inteiro}, despesa)
+    {:ok, despesa} = Repo.insert(changeset)
 
-    case Repo.insert(changeset) do
-      {:ok, _despesa} ->
-        conn
-       |> redirect(to: Routes.despesa_path(conn, :index, id))
-
-      {:error, changeset} ->
-        render(conn, "add_despesa.html", changeset: changeset, user_id: id)
-    end
+    conn
+    |> put_flash(:info, "Despesa criada com sucesso!")
+    |> redirect(to: Routes.despesa_path(conn, :index, id))
   end
 
   def edit(conn, %{"id" => id}) do
