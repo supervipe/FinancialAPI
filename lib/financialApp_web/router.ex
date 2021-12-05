@@ -24,19 +24,17 @@ defmodule FinancialAppWeb.Router do
 
     get "/despesa/list/:id", DespesaController, :index
     get "/despesa/new/:id", DespesaController, :new
-    get "/despesa/:id", DespesaController, :show
     post "/despesa/create", DespesaController, :create
     get "/despesa/edit/:id", DespesaController, :edit
     put "/despesa/update", DespesaController, :update
     get "/despesa/delete/:id", DespesaController, :delete
 
-    get "/receita/:id", ReceitaController, :index
+    get "/receita/list/:id", ReceitaController, :index
     get "/receita/new/:id", ReceitaController, :new
-    get "/receita/:id", ReceitaController, :show
-    post "/receita/create/:id", ReceitaController, :create
+    post "/receita/create", ReceitaController, :create
     get "/receita/edit/:id", ReceitaController, :edit
-    put "/receita/update/:id", ReceitaController, :update
-    delete "/receita/delete/:id", ReceitaController, :delete
+    put "/receita/update", ReceitaController, :update
+    get "/receita/delete/:id", ReceitaController, :delete
   end
 
   if Mix.env() in [:dev, :test] do

@@ -9,45 +9,39 @@ defmodule FinancialAppWeb.ReceitaController do
       Repo.all(
         from r in Receita, select: [r.name, r.valor, r.id], where: r.user_id == ^id
       )
-    render(conn, "index.html.heex", receitas: receitas, user_id: id)
-  end
-  def show(conn, %{"id" => id}) do
-    receita = Repo.get(Receita, String.to_integer(id))
-    render(conn, "index.html.heex", receita: receita)
+    render(conn, "list_receita.html", receitas: receitas, user_id: id)
   end
 
   def new(conn, %{"id" => id}) do
     changeset = Receita.changeset(%Receita{}, %{})
-    render(conn, "index.html.heex", changeset: changeset, user_id: id)
+    render(conn, "add_receita.html", changeset: changeset, user_id: id)
   end
 
   def create(conn, %{"id" => id, "receita" => receita}) do
     inteiro = String.to_integer(id)
     changeset = Receita.changeset(%Receita{user_id: inteiro}, receita)
-    case Repo.insert(changeset) do
-      {:ok, ^receita} ->
-        conn
-        |> put_flash(:info, "Receita criada com sucesso!")
-        |> redirect(to: Routes.receita_path(conn, :show, id))
-      {":error", changeset} ->
-        render(conn, "html", changeset: changeset, user_id: id)
-    end
+    {:ok, _receita} = Repo.insert(changeset)
+
+    conn
+    |> put_flash(:info, "Receita criada com sucesso!")
+    |> redirect(to: Routes.receita_path(conn, :index, id))
   end
 
   def edit(conn, %{"id" => id}) do
-    receita = Repo.get(Receita, id)
+    inteiro = String.to_integer(id)
+    receita = Repo.get(Receita, inteiro)
     changeset = Receita.changeset(receita, %{})
-    render(conn, "index.html.heex", receita: receita, changeset: changeset)
+    render(conn, "edit_receita.html", receita_id: receita.id, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "receita" => receita}) do
     r = Repo.get(Receita, id)
     changeset = Receita.changeset(r, receita)
-    {:ok, ^receita} = Repo.update(changeset)
+    {:ok, _receita} = Repo.update(changeset)
 
     conn
     |> put_flash(:info, "Receita alterada com sucesso!")
-    |> redirect(to: Routes.receita_path(conn, :show, r.user_id))
+    |> redirect(to: Routes.receita_path(conn, :index, r.user_id))
 
   end
 
@@ -57,7 +51,7 @@ defmodule FinancialAppWeb.ReceitaController do
 
     conn
     |> put_flash(:info, "Receita deletada com sucesso!")
-    |> redirect(to: Routes.receita_path(conn, :show, receita.user_id))
+    |> redirect(to: Routes.receita_path(conn, :index, receita.user_id))
 
   end
 

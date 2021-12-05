@@ -8,17 +8,9 @@
       <li class="nav-item", style="margin-right: 20px">
           <%= link "Receitas", to: Routes.receita_path(@conn, :index, @user_id)%>
         </li>
-        <li class="nav-item", style="margin-right: 20px">
-          <%= link "Despesas", to: Routes.despesa_path(@conn, :index, @user_id)%>
-        </li>
+        
         <li class="nav-item", style="margin-right: 20px">
            <%= link "Cadastrar uma receita", to: Routes.receita_path(@conn, :new, @user_id)%>
-        </li>
-        <li class="nav-item", style="margin-right: 20px">
-         <%= link "Cadastrar uma despesa", to: Routes.despesa_path(@conn, :new, @user_id)%>
-        </li>
-        <li class="nav-item">
-         <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
         </li>
         
       </ul>
@@ -32,18 +24,17 @@
     <tr style="font-size: 20px">
       <th scope="col">Nome</th>
       <th scope="col">Valor</th>
-      <th scope="col">Data</th>
     </tr>
   </thead>
   <tbody>
+  
   <%= for receita <- @receitas do %>
-<tr style="font-size: 20px">
-<td ><%= Enum.at(receita, 0) %></td>
-<td><%= Enum.at(receita, 1) %></td>
-<td><%= Enum.at(receita, 2) %></td>
-<td><%= link "Editar", to: Routes.receita_path(@conn, :edit, Enum.at(receita, 3)) %></td>
-<td><%= link "Deletar", to: Routes.receita_path(@conn, :delete, Enum.at(receita, 3)) %></td>
-</tr>
+  <tr style="font-size: 20px">
+    <td ><%= Enum.at(receita, 0) %></td>
+    <td><%= Enum.at(receita, 1) %></td>
+    <td><%= link "Editar", to: Routes.receita_path(@conn, :edit, Enum.at(receita, 2)) %></td>
+  <td><%= link "Deletar", to: Routes.receita_path(@conn, :delete, Enum.at(receita, 2)) %></td>
+  </tr>
 
     <%end %>
   </tbody>

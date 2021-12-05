@@ -1,32 +1,17 @@
-<h1 class="text-center"> Editar receita</h1>
+<h1> Editar Receita</h1>
 
-<%= form_for @changeset, Routes.receita_path(@conn, :update, id: @receita.id), fn f -> %>
-
-<div class="form-group" style="font-size: 20px">
-    <label for="exampleInputEmail1">Nome da receita</label>
-  <%= text_input f, :name, placeholder: "Nome da receita", class: "form-control", style: "font-size:15px" %>
-   <label for="exampleInputEmail1" style="margin-top:15px"><%= error_tag f, :name %></label>
-  </div>
+<%= form_for @changeset, Routes.receita_path(@conn, :update, id: @receita_id), fn f -> %>
 
 <div class="form-group">
+    <%= text_input f, :name, placeholder: "Nome da receita", class: "form-control" %>
+    <%= error_tag f, :name %>
 </div>
 
-<div class="form-group" style="font-size: 20px">
-    <label for="exampleInputPassword1">Valor da receita</label>
-   <%= text_input f, :value, placeholder: "Valor", class: "form-control", style: "font-size:15px" %>
-   <label for="exampleInputEmail1" style="margin-top:15px"><%= error_tag f, :value %></label>
-  </div>
 <div class="form-group">
-
-<div class="form-group" style="font-size: 20px">
-  <label for="exampleInputPassword1">Data da receita</label>
-    <%= text_input f, :date, placeholder: "Valor", class: "form-control", type: "date", style: "font-size:15px" %>
-    <label for="exampleInputEmail1" style="margin-top:15px"><%= error_tag f, :date %></label>
-  </div>
+    <%= text_input f, :valor, placeholder: "Valor", class: "form-control" %>
+    <%= error_tag f, :valor %>
 </div>
 
-<div style="text-align: center">
-<%= submit "Salvar", style: "font-size:15px" %>
-</div>
+<%= submit "Salvar" %>
 
 <% end %>

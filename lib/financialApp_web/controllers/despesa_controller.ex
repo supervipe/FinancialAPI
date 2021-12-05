@@ -13,11 +13,6 @@ defmodule FinancialAppWeb.DespesaController do
     render(conn, "list_despesas.html", despesas: despesas, user_id: id)
   end
 
-  def show(conn, %{"id" => id}) do
-    despesa = Repo.get(Despesa, String.to_integer(id))
-    render(conn, "list_despesas.html", despesa: despesa)
-  end
-
   def new(conn, %{"id" => id}) do
     changeset = Despesa.changeset(%Despesa{}, %{})
     render(conn, "add_despesa.html", changeset: changeset, user_id: id)
