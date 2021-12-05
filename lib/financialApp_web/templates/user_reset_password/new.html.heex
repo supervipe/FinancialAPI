@@ -5,11 +5,11 @@
   <%= email_input f, :email, required: true %>
 
   <div>
-    <%= submit "Send instructions to reset password" %>
+    <%= submit "Mandar instruções de redefinir senha" %>
   </div>
 </.form>
 
 <p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
+  <%= link "Cadastrar", to: Routes.user_registration_path(@conn, :new) %> |
   <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
 </p>

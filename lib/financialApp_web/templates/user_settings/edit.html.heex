@@ -20,7 +20,7 @@
   <%= error_tag f, :current_password %>
 
   <div>
-    <%= submit "Change email" %>
+    <%= submit "Mudar email" %>
   </div>
 </.form>
 
@@ -35,11 +35,11 @@
 
   <%= hidden_input f, :action, name: "action", value: "update_password" %>
 
-  <%= label f, :password, "New password" %>
+  <%= label f, :password, "Senha nova" %>
   <%= password_input f, :password, required: true %>
   <%= error_tag f, :password %>
 
-  <%= label f, :password_confirmation, "Confirm new password" %>
+  <%= label f, :password_confirmation, "Confirmar senha nova" %>
   <%= password_input f, :password_confirmation, required: true %>
   <%= error_tag f, :password_confirmation %>
 
@@ -48,6 +48,7 @@
   <%= error_tag f, :current_password %>
 
   <div>
-    <%= submit "Change password" %>
+    <%= submit "Mudar password" %>
   </div>
+
 </.form>

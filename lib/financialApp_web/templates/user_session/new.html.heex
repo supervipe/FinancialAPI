@@ -13,7 +13,7 @@
   <%= label f, :password %>
   <%= password_input f, :password, required: true %>
 
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
+  <%= label f, :remember_me, "Permanecer logado por 60 dias" %>
   <%= checkbox f, :remember_me %>
 
   <div>
@@ -22,6 +22,6 @@
 </.form>
 
 <p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+  <%= link "Cadastrar", to: Routes.user_registration_path(@conn, :new) %> |
+  <%= link "Esqueceu a senha?", to: Routes.user_reset_password_path(@conn, :new) %>
 </p>

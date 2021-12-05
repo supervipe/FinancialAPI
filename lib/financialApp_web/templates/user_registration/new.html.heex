@@ -16,11 +16,11 @@
   <%= error_tag f, :password %>
 
   <div>
-    <%= submit "Register" %>
+    <%= submit "Cadastrar" %>
   </div>
 </.form>
 
 <p>
   <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+  <%= link "Esqueceu sua senha?", to: Routes.user_reset_password_path(@conn, :new) %>
 </p>
