@@ -21,16 +21,17 @@ defmodule FinancialAppWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/despesa", DespesaController, :index
-    get "/despesa/new", DespesaController, :new
+
+    get "/despesa/list/:id", DespesaController, :index
+    get "/despesa/new/:id", DespesaController, :new
     get "/despesa/:id", DespesaController, :show
     post "/despesa/create/:id", DespesaController, :create
     get "/despesa/edit/:id", DespesaController, :edit
     put "/despesa/update/:id", DespesaController, :update
     delete "/despesa/delete/:id", DespesaController, :delete
 
-    get "/receita", ReceitaController, :index
-    get "/receita/new", ReceitaController, :new
+    get "/receita/:id", ReceitaController, :index
+    get "/receita/new/:id", ReceitaController, :new
     get "/receita/:id", ReceitaController, :show
     post "/receita/create/:id", ReceitaController, :create
     get "/receita/edit/:id", ReceitaController, :edit
@@ -38,18 +39,6 @@ defmodule FinancialAppWeb.Router do
     delete "/receita/delete/:id", ReceitaController, :delete
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", FinancialAppWeb do
-  #   pipe_through :api
-  # end
-
-  # Enables LiveDashboard only for development
-  #
-  # If you want to use the LiveDashboard in production, you should put
-  # it behind authentication and allow only admins to access it.
-  # If your application does not have an admins-only section yet,
-  # you can use Plug.BasicAuth to set up some basic authentication
-  # as long as you are also using SSL (which you should anyway).
   if Mix.env() in [:dev, :test] do
     import Phoenix.LiveDashboard.Router
 
@@ -59,10 +48,6 @@ defmodule FinancialAppWeb.Router do
     end
   end
 
-  # Enables the Swoosh mailbox preview in development.
-  #
-  # Note that preview only shows emails that were sent by the same
-  # node running the Phoenix server.
   if Mix.env() == :dev do
     scope "/dev" do
       pipe_through :browser

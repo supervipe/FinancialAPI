@@ -1,0 +1,22 @@
+<h1> Editar Despesa</h1>
+
+<%= form_for @changeset, Routes.despesa_path(@conn, :update, id: @despesa_id), fn f -> %>
+
+<div class="form-group">
+<%= text_input f, :name, placeholder: "Nome da despesa", class: "form-control" %>
+<%= error_tag f, :name %>
+</div>
+
+<div class="form-group">
+<%= text_input f, :value, placeholder: "Valor", class: "form-control" %>
+<%= error_tag f, :value %>
+</div>
+
+<div class="form-group">
+<%= date_select f, :date, placeholder: "Valor", class: "form-control" %>
+<%= error_tag f, :date %>
+</div>
+
+<%= submit "Salvar" %>
+
+<% end %>
