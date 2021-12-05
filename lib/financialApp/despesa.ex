@@ -14,6 +14,6 @@ defmodule FinancialApp.Despesa do
   def changeset(despesa, attrs) do
     despesa
     |> cast(attrs, [:name, :valor, :user_id])
-    |> validate_required([:name, :valor, :user_id])
+    |> validate_required([:name, :valor, :user_id], message: "Este campo não pode ser vazio.")
   end
 end

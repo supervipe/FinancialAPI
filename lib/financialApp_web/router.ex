@@ -28,7 +28,7 @@ defmodule FinancialAppWeb.Router do
     post "/despesa/create", DespesaController, :create
     get "/despesa/edit/:id", DespesaController, :edit
     put "/despesa/update", DespesaController, :update
-    delete "/despesa/delete/:id", DespesaController, :delete
+    get "/despesa/delete/:id", DespesaController, :delete
 
     get "/receita/:id", ReceitaController, :index
     get "/receita/new/:id", ReceitaController, :new

@@ -31,10 +31,12 @@
   <%= for despesa <- @despesas do %>
 
   <tr style="font-size: 20px">
+    
     <td ><%= Enum.at(despesa, 0) %></td>
     <td><%= Enum.at(despesa, 1) %></td>
+
     <td><%= link "Editar", to: Routes.despesa_path(@conn, :edit, Enum.at(despesa, 2)) %></td>
-    <td><%= link "Deletar", to: Routes.despesa_path(@conn, :delete, Enum.at(despesa, 2)) %></td>
+    <td><%= link "Excluir", to: Routes.despesa_path(@conn, :delete, Enum.at(despesa, 2)) %></td>
   </tr>
 
     <%end %>

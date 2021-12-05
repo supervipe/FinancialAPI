@@ -26,7 +26,7 @@ defmodule FinancialAppWeb.DespesaController do
   def create(conn, %{"id" => id, "despesa" => despesa}) do
     inteiro = String.to_integer(id)
     changeset = Despesa.changeset(%Despesa{user_id: inteiro}, despesa)
-    {:ok, despesa} = Repo.insert(changeset)
+    {:ok, _despesa} = Repo.insert(changeset)
 
     conn
     |> put_flash(:info, "Despesa criada com sucesso!")
@@ -34,20 +34,20 @@ defmodule FinancialAppWeb.DespesaController do
   end
 
   def edit(conn, %{"id" => id}) do
-    despesa = Repo.get(Despesa, id)
+    inteiro = String.to_integer(id)
+    despesa = Repo.get(Despesa, inteiro)
     changeset = Despesa.changeset(despesa, %{})
-    render(conn, "edit_despesa.html", despesa: despesa, changeset: changeset)
+    render(conn, "edit_despesa.html", despesa_id: despesa.id, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "despesa" => despesa}) do
     des = Repo.get(Despesa, id)
     changeset = Despesa.changeset(des, despesa)
-    {:ok, ^despesa} = Repo.update(changeset)
+    {:ok, _despesa} = Repo.update(changeset)
 
     conn
     |> put_flash(:info, "Despesa alterada com sucesso!")
-    |> redirect(to: Routes.despesa_path(conn, :show, des.user_id))
-
+    |> redirect(to: Routes.despesa_path(conn, :index, des.user_id))
   end
 
   def delete(conn, %{"id" => id}) do
@@ -56,7 +56,7 @@ defmodule FinancialAppWeb.DespesaController do
 
     conn
     |> put_flash(:info, "Despesa deletada com sucesso!")
-    |> redirect(to: Routes.despesa_path(conn, :show, despesa.user_id))
+    |> redirect(to: Routes.despesa_path(conn, :index, despesa.user_id))
 
   end
 
