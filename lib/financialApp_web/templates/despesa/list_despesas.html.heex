@@ -1,37 +1,52 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
   <div class="container-fluid">
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNav", style="font-size: 20px">
+
+    <div class="collapse navbar-collapse" id="navbarNav", style="font-size: 2.0em">
       <ul class="navbar-nav">
 
-        <li class="nav-item", style="margin-right: 20px">
+        <li class="nav-item active", style="margin: 2.0em"">
           <%= link "Despesas", to: Routes.despesa_path(@conn, :index, @user_id)%>
         </li>
 
-        <li class="nav-item", style="margin-right: 20px">
+        <li class="nav-item active", style="margin: 2.0em">
          <%= link "Cadastrar uma despesa", to: Routes.despesa_path(@conn, :new, @user_id)%>
         </li>
 
+        <li class="nav-item active", style="margin: 2.0em">
+          <%= link "Receitas", to: Routes.receita_path(@conn, :index, @user_id)%>
+        </li>
+
+        <li class="nav-item active", style="margin: 2.0em">
+         <%= link "Cadastrar uma receita", to: Routes.receita_path(@conn, :new, @user_id)%>
+        </li>
+
       </ul>
+
     </div>
+
   </div>
+
 </nav>
 
-<table class="table table-striped">
-  <thead>
-    <tr style="font-size: 20px">
+<h1 style="margin-top: 1.5em">DESPESAS</h1>
+
+<table table table-striped>
+
+  <thead class="thead-light">
+    <tr style="font-size: 2.0em">
       <th scope="col">Nome</th>
       <th scope="col">Valor</th>
     </tr>
   </thead>
-  <tbody>
 
   <%= for despesa <- @despesas do %>
 
-    <tr style="font-size: 20px">
-      
+    <tr style="font-size: 2.0em">
       <td ><%= Enum.at(despesa, 0) %></td>
       <td><%= Enum.at(despesa, 1) %></td>
 
@@ -40,5 +55,5 @@
     </tr>
 
     <%end %>
-  </tbody>
+  
 </table>

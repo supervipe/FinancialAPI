@@ -1,13 +1,13 @@
 <li>
   <%= if @current_user do %>
     
-    <li><%= @current_user.email %></li>
-    <li><%= link "Configurações", to: Routes.user_settings_path(@conn, :edit) %></li>
-    <li><%= link "Sair da conta", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
+    <li class="list-group-item" style="font-size: 1.5em"><%= @current_user.email %></li>
+    <li style="font-size: 1.5em"><%= link "Configurações", to: Routes.user_settings_path(@conn, :edit) %></li>
+    <li style="font-size: 1.5em"><%= link "Sair da conta", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
 
   <% else %>
-    <li><%= link "Cadastrar-se", to: Routes.user_registration_path(@conn, :new) %></li>
-    <li><%= link "Login", to: Routes.user_session_path(@conn, :new) %></li>
+    <li style="font-size: 1.5em"><%= link "Cadastrar-se", to: Routes.user_registration_path(@conn, :new) %></li>
+    <li style="font-size: 1.5em"><%= link "Logar", to: Routes.user_session_path(@conn, :new) %></li>
   <% end %>
 
 </li>
